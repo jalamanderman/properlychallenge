@@ -80,15 +80,16 @@ class App extends Component {
     handleFindUserTierClick = () => {
       const tier = document.getElementById("Tier").value;
       const greaterOrLess = document.getElementById("GreaterOrLess").value;
+      const numOfProperties = parseInt(document.getElementById("NumberOfProperties").value);
+      console.log(greaterOrLess);
+
       //const greaterThan = document.getElementById("Greater Than").value;
       //const lessThan = document.getElementById("Less Than").value;
-      // let greaterOrLess = "Less Than";
-      //
-      // if (greaterThan === true) {
-      //     greaterOrLess = "Greater Than";
-      // }
-
-      const numOfProperties = parseInt(document.getElementById("NumberOfProperties").value);
+       // let greaterOrLess = "Less Than";
+       //
+       // if (greaterThan === true) {
+       //    greaterOrLess = "Greater Than";
+       // }
 
       const userTierAndNumberOfProperties = scripts.subscriptionAndProperties(tier, greaterOrLess, numOfProperties);
 
@@ -129,7 +130,8 @@ class App extends Component {
                     <td>{value.id}</td>
                     <td>{value.startDate}</td>
                     <td>{value.endDate}</td>
-                </tr>``
+                    <td>{value.timeZone}</td>
+                </tr>
             ));
         }
         else return null;
@@ -177,14 +179,14 @@ class App extends Component {
         })
     };
 
-    radioOnChange = (e) => {
-        console.log(e.target);
-
-        this.setState((prevState) => ({
-            checked1: !prevState.checked1,
-            checked2: !prevState.checked2
-        }));
-    };
+    // radioOnChange = (e) => {
+    //     console.log(e.target);
+    //
+    //     this.setState((prevState) => ({
+    //         checked1: !prevState.checked1,
+    //         checked2: !prevState.checked2
+    //     }));
+    // };
 
   render() {
     return (
@@ -192,7 +194,7 @@ class App extends Component {
           <h1>Properly Coding Challenge</h1>
           <hr></hr>
           <div className="Answer">
-              <h4 className="Answerhead">All users from particular city</h4>
+              <h4 className="Answerhead">All users from a particular city</h4>
             <input className={"Input"} value={this.state.value} placeholder={"City"} onChange={this.handleCityInput}/>
             <table className={"Results"}>
                 <thead>
@@ -245,7 +247,7 @@ class App extends Component {
               {/*</div>*/}
               {/*<div className="radio">*/}
                   {/*<label>*/}
-                      {/*<input id={"Less Than"} type="radio" value="option2" value={this.state.checked2} checked={this.state.checked2} onChange={this.radioOnChange} />*/}
+                      {/*<input id={"Less Than"} type="radio" value={this.state.checked2} checked={this.state.checked2} onChange={this.radioOnChange} />*/}
                       {/*Less Than*/}
                   {/*</label>*/}
               {/*</div>*/}
@@ -257,6 +259,9 @@ class App extends Component {
                   <tr>
                       <th>
                           Id:
+                      </th>
+                      <th>
+                          Name:
                       </th>
                       <th>
                           Tier:
@@ -311,6 +316,9 @@ class App extends Component {
                       <th>
                           End Date:
                       </th>
+                      {/*<th>*/}
+                          {/*Time Zone:*/}
+                      {/*</th>*/}
                   </tr>
                   </thead>
                   <tbody>

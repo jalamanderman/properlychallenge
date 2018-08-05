@@ -159,6 +159,8 @@ function bookingsForPeriod (startD, endD) {
             };
             bookings.push(booking);
         }
+
+
     });
     return bookings;
 }
@@ -183,7 +185,7 @@ function bookingsLength (moreOrLessThan, days) {
 
         let hoursBackToDays = Math.floor(hours/24);
 
-        if (moreOrLessThan === "More Than Or Equal") {
+        if (moreOrLessThan === "Greater Than Or Equal") {
             if (hours >= days) {
                 let booking = {
                     id: item.id,
