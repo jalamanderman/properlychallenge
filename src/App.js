@@ -194,8 +194,9 @@ class App extends Component {
           <h1>Properly Coding Challenge</h1>
           <hr></hr>
           <div className="Answer">
-              <h4 className="Answerhead">All users from a particular city</h4>
-            <input className={"Input"} value={this.state.value} placeholder={"City"} onChange={this.handleCityInput}/>
+              <h4>All users from a particular city</h4>
+              <label>Search City: </label>
+              <input value={this.state.value} placeholder={"City"} onChange={this.handleCityInput}/>
             <table className={"Results"}>
                 <thead>
                 <tr>
@@ -215,6 +216,7 @@ class App extends Component {
           <hr></hr>
           <div className="Answer">
               <h4>All users from particular company e.g. @future.com</h4>
+              <label>Search Company: </label>
               <input value={this.state.value} placeholder={"@mail.com"} onChange={this.handleCompanyInput}/>
               <table className={"Results"}>
                   <thead>
@@ -238,7 +240,8 @@ class App extends Component {
           <hr></hr>
           <div className="Answer">
               <h4>All users from tier and number of properties</h4>
-              <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.Tier} placeholder={"Tier"} id={"Tier"}/>
+              <label>Tier: </label>
+              <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.Tier} placeholder={"Free Tier"} id={"Tier"}/>
               {/*<div className="radio">*/}
                   {/*<label>*/}
                       {/*<input id={"Greater Than"} type="radio" value={this.state.checked1} checked={this.state.checked1} onChange={this.radioOnChange} />*/}
@@ -251,7 +254,9 @@ class App extends Component {
                       {/*Less Than*/}
                   {/*</label>*/}
               {/*</div>*/}
-              <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.GreaterOrLess} placeholder={"GreaterOrLess"} id={"GreaterOrLess"}/>
+              <label>Greater or Less: </label>
+              <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.GreaterOrLess} placeholder={"Greater Than"} id={"GreaterOrLess"}/>
+              <label># Propeties: </label>
               <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.NumberOfProperties} placeholder={"NumberOfProperties"} id={"NumberOfProperties"}/>
               <button onClick={this.handleFindUserTierClick}>Find</button>
               <table className={"Results"}>
@@ -301,8 +306,10 @@ class App extends Component {
           <hr></hr>
           <div className="Answer">
               <h4>Print bookings for dates: </h4>
-              <input onChange={this.handleFindBookings} value={this.state.StartDate} placeholder={"Start YYYY-MM-DD HH:mm"} id={"StartDate"}/>
-              <input onChange={this.handleFindBookings} value={this.state.EndDate} placeholder={"End YYYY-MM-DD HH:mm"} id={"EndDate"}/>
+              <label>Start Date: </label>
+              <input onChange={this.handleFindBookings} value={this.state.StartDate} placeholder={"YYYY-MM-DD HH:mm"} id={"StartDate"}/>
+              <label>End Date: </label>
+              <input onChange={this.handleFindBookings} value={this.state.EndDate} placeholder={"YYYY-MM-DD HH:mm"} id={"EndDate"}/>
               <button onClick={this.handleFindBookingsClick}>Find</button>
               <table className={"Results"}>
                   <thead>
@@ -329,8 +336,10 @@ class App extends Component {
           <hr></hr>
           <div className="Answer">
               <h4>Bookings of length: </h4>
-              <input onChange={this.handleFindBookingsOfLength} value={this.state.moreOrLessThan} placeholder={"moreOrLessThan"} id={"moreOrLessThan"}/>
-              <input onChange={this.handleFindBookingsOfLength} value={this.state.length} placeholder={"Length (Days)"} id={"length"}/>
+              <label>Greater Than/ Less Than: </label>
+              <input onChange={this.handleFindBookingsOfLength} value={this.state.moreOrLessThan} placeholder={"Greater Than"} id={"moreOrLessThan"}/>
+              <label>Length: </label>
+              <input onChange={this.handleFindBookingsOfLength} value={this.state.length} placeholder={"Days"} id={"length"}/>
               <button onClick={this.handleFindBookingsOfLengthClick}>Find</button>
               <table className={"Results"}>
                   <thead>

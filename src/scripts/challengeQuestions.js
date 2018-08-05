@@ -185,7 +185,7 @@ function bookingsLength (moreOrLessThan, days) {
 
         let hoursBackToDays = Math.floor(hours/24);
 
-        if (moreOrLessThan === "Greater Than Or Equal") {
+        if (moreOrLessThan === "Greater Than") {
             if (hours >= days) {
                 let booking = {
                     id: item.id,
@@ -194,7 +194,7 @@ function bookingsLength (moreOrLessThan, days) {
                 bookings.push(booking);
             }
         }
-        else if (moreOrLessThan === "Less Than Or Equal") {
+        else if (moreOrLessThan === "Less Than") {
             if (hours <= days) {
                 let booking = {
                     id: item.id,

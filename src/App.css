@@ -9,12 +9,9 @@
   margin-left: 10px;
 }
 
-.AnswerHead {
-
-}
-
-.Input {
-
+label {
+  font-size: 12px;
+  margin-left: 3px;
 }
 
 .Results {
@@ -22,9 +19,11 @@
   margin-left: 10px;
 }
 
-th {
+th, td {
+  border: 1px solid #ddd;
   font-size: 13px;
 }
 tr {
+  border: 1px solid #ddd;
   font-size: 12px;
 }
