@@ -26,6 +26,8 @@ class App extends Component {
                 <tr>
                     <td>{value.name}</td>
                     <td>{value.id}</td>
+                    <td>{value.city}</td>
+                    <td>{value.country}</td>
                 </tr>
             ));
         }
@@ -81,7 +83,6 @@ class App extends Component {
       const tier = document.getElementById("Tier").value;
       const greaterOrLess = document.getElementById("GreaterOrLess").value;
       const numOfProperties = parseInt(document.getElementById("NumberOfProperties").value);
-      console.log(greaterOrLess);
 
       //const greaterThan = document.getElementById("Greater Than").value;
       //const lessThan = document.getElementById("Less Than").value;
@@ -205,6 +206,12 @@ class App extends Component {
                     </th>
                     <th>
                         Id:
+                    </th>
+                    <th>
+                        City:
+                    </th>
+                    <th>
+                        Country:
                     </th>
                 </tr>
                 </thead>

@@ -33,7 +33,13 @@ function usersFromCity (city) {
         convertedCity = cityreversegeo(lat,long);
 
         if (convertedCity[0].city === city) {
-            filteredUsers.push(item);
+            let userInfo = {
+                id: item.id,
+                name: item.name,
+                city: convertedCity[0].city,
+                country: convertedCity[0].country
+            };
+            filteredUsers.push(userInfo);
           }
      });
      return filteredUsers;
@@ -55,12 +61,12 @@ function usersFromCompany (companyDomain) {
 //hash map
 
  function subscriptionAndProperties (tier, greaterOrless, num) {
-
+     //Master array to concat the array data
      let usersMasterArray = [];
      let returnedUsers = [];
 
-     usersArray.forEach((user) => {
-        subscriptionsArray.forEach((sub) => {
+     usersArray.filter((user) => {
+         subscriptionsArray.filter((sub) => {
             if(user.subscriptionId === sub.id) {
                 let userInfo = {
                     id: user.id,
@@ -73,8 +79,8 @@ function usersFromCompany (companyDomain) {
          }) ;
      });
 
-     usersMasterArray.forEach((user) => {
-        propertiesArray.forEach((property) => {
+     usersMasterArray.filter((user) => {
+         propertiesArray.filter((property) => {
            if (user.id === property.userId) {
                 user.properties ++;
                }
@@ -108,7 +114,7 @@ function usersFromDifferentCity () {
     let filteredUsers = [];
 
     usersArray.filter((user) => {
-        propertiesArray.forEach((property) => {
+        propertiesArray.filter((property) => {
             if(user.id === property.userId) {
                 userLat = user.location[0];
                 userLong = user.location[1];
@@ -146,7 +152,7 @@ function bookingsForPeriod (startD, endD) {
     let endISO;
     let bookings = [];
 
-    bookingsArray.forEach((item) => {
+    bookingsArray.filter((item) => {
         //Convert to readable time stamp
         startISO = moment(item.startDate).format("YYYY-MM-DD HH:mm");
         endISO = moment(item.endDate).format("YYYY-MM-DD HH:mm");
@@ -164,8 +170,6 @@ function bookingsForPeriod (startD, endD) {
     });
     return bookings;
 }
-
-//console.log(bookingsForPeriod("2018-02-15 01:00", "2018-02-25 01:00"));
 
 // - All bookings longer or equal to 25 days.
 // - All bookings shorter or equal to 3 days.
@@ -206,6 +210,5 @@ function bookingsLength (moreOrLessThan, days) {
     });
     return bookings;
 }
-//console.log(bookingsLength("Less Than Or Equal", 1));
 
 export {usersFromCity, usersFromCompany, subscriptionAndProperties, usersFromDifferentCity, bookingsForPeriod, bookingsLength};
