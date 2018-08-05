@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import * as scripts from './scripts/challengeQuestions.js';
 
@@ -7,7 +6,10 @@ class App extends Component {
 
     constructor (props) {
         super(props);
-        this.state = {};
+        this.state = {
+            checked1: false,
+            checked2: true
+        };
     }
 
     handleCityInput = (e) => {
@@ -60,6 +62,7 @@ class App extends Component {
             stateName: state
         })
     };
+
     printUserSubscriptionTierAndNumberOfProperties = () => {
         if (this.state.userTierAndNumberOfProperties && this.state.userTierAndNumberOfProperties[0] !== undefined) {
             return (this.state.userTierAndNumberOfProperties.map((value) =>
@@ -77,6 +80,14 @@ class App extends Component {
     handleFindUserTierClick = () => {
       const tier = document.getElementById("Tier").value;
       const greaterOrLess = document.getElementById("GreaterOrLess").value;
+      //const greaterThan = document.getElementById("Greater Than").value;
+      //const lessThan = document.getElementById("Less Than").value;
+      // let greaterOrLess = "Less Than";
+      //
+      // if (greaterThan === true) {
+      //     greaterOrLess = "Greater Than";
+      // }
+
       const numOfProperties = parseInt(document.getElementById("NumberOfProperties").value);
 
       const userTierAndNumberOfProperties = scripts.subscriptionAndProperties(tier, greaterOrLess, numOfProperties);
@@ -102,14 +113,88 @@ class App extends Component {
         else return null;
     };
 
+    handleFindBookings = (e) => {
+        let stateName = e.target.placeholder;
+        let state = e.target.value;
+
+        this.setState({
+            stateName: state
+        })
+    };
+
+    printBookingsOfPeriod = () => {
+        if (this.state.bookingForPeriodArray && this.state.bookingForPeriodArray[0] !== undefined) {
+            return (this.state.bookingForPeriodArray.map((value) =>
+                <tr>
+                    <td>{value.id}</td>
+                    <td>{value.startDate}</td>
+                    <td>{value.endDate}</td>
+                </tr>``
+            ));
+        }
+        else return null;
+    };
+
+    handleFindBookingsClick = () => {
+        const startDate = document.getElementById("StartDate").value;
+        const endDate = document.getElementById("EndDate").value;
+
+        const bookingForPeriodArray = scripts.bookingsForPeriod(startDate, endDate);
+
+        this.setState({
+            bookingForPeriodArray: bookingForPeriodArray
+        })
+    };
+
+    handleFindBookingsOfLength = (e) => {
+        let stateName = e.target.placeholder;
+        let state = e.target.value;
+
+        this.setState({
+            stateName: state
+        })
+    };
+
+    printBookingsOfLength = () => {
+        if (this.state.bookingForLength && this.state.bookingForLength[0] !== undefined) {
+            return (this.state.bookingForLength.map((value) =>
+                <tr>
+                    <td>{value.id}</td>
+                    <td>{value.duration}</td>
+                </tr>
+            ));
+        }
+        else return null;
+    };
+
+    handleFindBookingsOfLengthClick = () => {
+        const moreOrLessThan = document.getElementById("moreOrLessThan").value;
+        const length = document.getElementById("length").value;
+        const bookingForLength = scripts.bookingsLength(moreOrLessThan, length);
+
+        this.setState({
+            bookingForLength: bookingForLength
+        })
+    };
+
+    radioOnChange = (e) => {
+        console.log(e.target);
+
+        this.setState((prevState) => ({
+            checked1: !prevState.checked1,
+            checked2: !prevState.checked2
+        }));
+    };
 
   render() {
     return (
       <div className="App">
-          <div>
-              <h4>All users from particular city</h4>
-            <input value={this.state.value} placeholder={"City"} onChange={this.handleCityInput}/>
-            <table>
+          <h1>Properly Coding Challenge</h1>
+          <hr></hr>
+          <div className="Answer">
+              <h4 className="Answerhead">All users from particular city</h4>
+            <input className={"Input"} value={this.state.value} placeholder={"City"} onChange={this.handleCityInput}/>
+            <table className={"Results"}>
                 <thead>
                 <tr>
                     <th>
@@ -125,10 +210,11 @@ class App extends Component {
                 </tbody>
             </table>
           </div>
-          <div>
+          <hr></hr>
+          <div className="Answer">
               <h4>All users from particular company e.g. @future.com</h4>
               <input value={this.state.value} placeholder={"@mail.com"} onChange={this.handleCompanyInput}/>
-              <table>
+              <table className={"Results"}>
                   <thead>
                   <tr>
                       <th>
@@ -147,18 +233,28 @@ class App extends Component {
                   </tbody>
               </table>
           </div>
-          <div>
+          <hr></hr>
+          <div className="Answer">
               <h4>All users from tier and number of properties</h4>
               <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.Tier} placeholder={"Tier"} id={"Tier"}/>
+              {/*<div className="radio">*/}
+                  {/*<label>*/}
+                      {/*<input id={"Greater Than"} type="radio" value={this.state.checked1} checked={this.state.checked1} onChange={this.radioOnChange} />*/}
+                      {/*Greater Than*/}
+                  {/*</label>*/}
+              {/*</div>*/}
+              {/*<div className="radio">*/}
+                  {/*<label>*/}
+                      {/*<input id={"Less Than"} type="radio" value="option2" value={this.state.checked2} checked={this.state.checked2} onChange={this.radioOnChange} />*/}
+                      {/*Less Than*/}
+                  {/*</label>*/}
+              {/*</div>*/}
               <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.GreaterOrLess} placeholder={"GreaterOrLess"} id={"GreaterOrLess"}/>
               <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.NumberOfProperties} placeholder={"NumberOfProperties"} id={"NumberOfProperties"}/>
               <button onClick={this.handleFindUserTierClick}>Find</button>
-              <table>
+              <table className={"Results"}>
                   <thead>
                   <tr>
-                      <th>
-                          Name:
-                      </th>
                       <th>
                           Id:
                       </th>
@@ -175,9 +271,10 @@ class App extends Component {
                   </tbody>
               </table>
           </div>
-          <div>
+          <hr></hr>
+          <div className="Answer">
               <h4>All users that live in a different city than their properties</h4>
-              <table>
+              <table className={"Results"}>
                   <thead>
                   <tr>
                       <th>
@@ -193,6 +290,53 @@ class App extends Component {
                   </thead>
                   <tbody>
                   {this.printUserDifferentToProperty()}
+                  </tbody>
+              </table>
+          </div>
+          <hr></hr>
+          <div className="Answer">
+              <h4>Print bookings for dates: </h4>
+              <input onChange={this.handleFindBookings} value={this.state.StartDate} placeholder={"Start YYYY-MM-DD HH:mm"} id={"StartDate"}/>
+              <input onChange={this.handleFindBookings} value={this.state.EndDate} placeholder={"End YYYY-MM-DD HH:mm"} id={"EndDate"}/>
+              <button onClick={this.handleFindBookingsClick}>Find</button>
+              <table className={"Results"}>
+                  <thead>
+                  <tr>
+                      <th>
+                          Id:
+                      </th>
+                      <th>
+                          Start Date:
+                      </th>
+                      <th>
+                          End Date:
+                      </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {this.printBookingsOfPeriod()}
+                  </tbody>
+              </table>
+          </div>
+          <hr></hr>
+          <div className="Answer">
+              <h4>Bookings of length: </h4>
+              <input onChange={this.handleFindBookingsOfLength} value={this.state.moreOrLessThan} placeholder={"moreOrLessThan"} id={"moreOrLessThan"}/>
+              <input onChange={this.handleFindBookingsOfLength} value={this.state.length} placeholder={"Length (Days)"} id={"length"}/>
+              <button onClick={this.handleFindBookingsOfLengthClick}>Find</button>
+              <table className={"Results"}>
+                  <thead>
+                  <tr>
+                      <th>
+                          Id:
+                      </th>
+                      <th>
+                          Length of stay (days):
+                      </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {this.printBookingsOfLength()}
                   </tbody>
               </table>
           </div>

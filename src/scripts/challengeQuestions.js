@@ -116,6 +116,7 @@ function usersFromDifferentCity () {
                 propertyLat = property.location[0];
                 propertyLong = property.location[1];
 
+                //Convert coordinates to City
                 userConvertedCity = cityreversegeo(userLat,userLong);
                 propertyConvertedCity = cityreversegeo(propertyLat,propertyLong);
 
@@ -130,10 +131,9 @@ function usersFromDifferentCity () {
             }
         });
     });
+    //Remove duplicate values
     return _.uniqBy(filteredUsers, 'id');
 }
-
-//console.log(usersFromDifferentCity());
 
 //TASK GROUP 2
 // - All bookings for a **given period** (start and end dates).
@@ -141,21 +141,27 @@ function usersFromDifferentCity () {
 // - The **given period** is also provided in the Property timeZone.
 //
 
-const bookingsForPeriod = (startD, endD) => {
+function bookingsForPeriod (startD, endD) {
     let startISO;
     let endISO;
     let bookings = [];
 
     bookingsArray.forEach((item) => {
+        //Convert to readable time stamp
         startISO = moment(item.startDate).format("YYYY-MM-DD HH:mm");
         endISO = moment(item.endDate).format("YYYY-MM-DD HH:mm");
 
         if (startISO >= startD && endISO <= endD) {
-            bookings.push(item);
+            let booking = {
+                id: item.id,
+                startDate: startISO,
+                endDate: endISO
+            };
+            bookings.push(booking);
         }
     });
     return bookings;
-};
+}
 
 //console.log(bookingsForPeriod("2018-02-15 01:00", "2018-02-25 01:00"));
 
@@ -163,7 +169,7 @@ const bookingsForPeriod = (startD, endD) => {
 // - All bookings shorter or equal to 3 days.
 // - All Properties with Bookings with 1 day or less between bookings
 
-const bookingsLength = (moreOrLessThan, days) => {
+function bookingsLength (moreOrLessThan, days) {
     days *= 24;
     let momentDiff;
     let dur;
@@ -175,22 +181,29 @@ const bookingsLength = (moreOrLessThan, days) => {
         dur = moment.duration(momentDiff);
         hours = parseInt(dur.asHours());
 
+        let hoursBackToDays = Math.floor(hours/24);
+
         if (moreOrLessThan === "More Than Or Equal") {
             if (hours >= days) {
-                bookings.push(item);
+                let booking = {
+                    id: item.id,
+                    duration: hoursBackToDays,
+                };
+                bookings.push(booking);
             }
         }
         else if (moreOrLessThan === "Less Than Or Equal") {
             if (hours <= days) {
-                bookings.push(item);
-                console.log(hours);
+                let booking = {
+                    id: item.id,
+                    duration: hoursBackToDays,
+                };
+                bookings.push(booking);
             }
         }
     });
     return bookings;
-};
+}
 //console.log(bookingsLength("Less Than Or Equal", 1));
 
-// - With the functions created expose them in a restful application and create a dashboard (simple UI) to display the results
-
-export {usersFromCity, usersFromCompany, subscriptionAndProperties, usersFromDifferentCity};
+export {usersFromCity, usersFromCompany, subscriptionAndProperties, usersFromDifferentCity, bookingsForPeriod, bookingsLength};
