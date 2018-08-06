@@ -247,8 +247,9 @@ class App extends Component {
           <hr></hr>
           <div className="Answer">
               <h4>All users from tier and number of properties</h4>
-              <label>Tier: </label>
-              <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.Tier} placeholder={"Free Tier"} id={"Tier"}/>
+              <label>Tier: "Free" or "Premium" </label>
+              <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.Tier} placeholder={"Free"}
+                     id={"Tier"}/>
               {/*<div className="radio">*/}
                   {/*<label>*/}
                       {/*<input id={"Greater Than"} type="radio" value={this.state.checked1} checked={this.state.checked1} onChange={this.radioOnChange} />*/}
@@ -261,7 +262,7 @@ class App extends Component {
                       {/*Less Than*/}
                   {/*</label>*/}
               {/*</div>*/}
-              <label>Greater or Less: </label>
+              <label>Greater Than or Less Than: </label>
               <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.GreaterOrLess} placeholder={"Greater Than"} id={"GreaterOrLess"}/>
               <label># Propeties: </label>
               <input onChange={this.handleUserTierAndNumOfProperties} value={this.state.NumberOfProperties} placeholder={"NumberOfProperties"} id={"NumberOfProperties"}/>

@@ -65,6 +65,11 @@ function usersFromCompany (companyDomain) {
      let usersMasterArray = [];
      let returnedUsers = [];
 
+     //Change Free to Free Tier for database call
+     if (tier === "Free") {
+         tier = "Free Tier";
+     }
+
      usersArray.filter((user) => {
          subscriptionsArray.filter((sub) => {
             if(user.subscriptionId === sub.id) {
