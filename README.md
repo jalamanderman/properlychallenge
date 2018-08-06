@@ -1,3 +1,10 @@
+To run:
+
+npm install
+npm start
+
+:)
+
 # Properly Coding Challenge
 Code challenge for full stack developers.
 
