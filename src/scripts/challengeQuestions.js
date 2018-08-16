@@ -1,8 +1,8 @@
 
 // Convert JSON files to array variables
 
-const users = require("../store/users.json");
-const usersArray = Object.keys(users).map(function(k) { return users[k] });
+const usersArray = require("../store/users.json");
+//const usersArray = Object.keys(users).map(function(k) { return users[k] });
 
 const bookings = require("../store/bookings.json");
 const bookingsArray = Object.keys(bookings).map(function(k) { return bookings[k] });
@@ -18,6 +18,7 @@ const moment = require('moment');
 const cityreversegeo = require('city-reverse-geocoder');
 const _ = require('lodash');
 
+
 //TASK GROUP 1
 //All users from a particular city
 
@@ -27,7 +28,7 @@ function usersFromCity (city) {
      let convertedCity;
      let filteredUsers = [];
 
-     usersArray.filter((item) => {
+    usersArray.forEach((item) => {
         lat = item.location[0];
         long = item.location[1];
         convertedCity = cityreversegeo(lat,long);
@@ -48,13 +49,10 @@ function usersFromCity (city) {
 //All users from a particular company (a user of a company is a user that has the same email domain. E.g for john@getproperly.com and company@getproperly.com "getproperly.com" is the email domain)
 
 function usersFromCompany (companyDomain) {
-    let filteredUsers = [];
-    usersArray.filter((item) => {
-        if (item.email.includes(companyDomain)){
-        filteredUsers.push(item);}
-    });
-    return filteredUsers;
+    return usersArray.filter((item) =>
+        item.email.includes(companyDomain));
 }
+
 
 //All users from Free tier subscription which have more than 6 properties
 //All users from Premium tier subscription which have less than 4 properties
