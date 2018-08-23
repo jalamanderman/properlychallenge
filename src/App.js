@@ -7,8 +7,6 @@ class App extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            checked1: false,
-            checked2: true
         };
     }
 
@@ -83,15 +81,6 @@ class App extends Component {
       const tier = document.getElementById("Tier").value;
       const greaterOrLess = document.getElementById("GreaterOrLess").value;
       const numOfProperties = parseInt(document.getElementById("NumberOfProperties").value);
-
-      //const greaterThan = document.getElementById("Greater Than").value;
-      //const lessThan = document.getElementById("Less Than").value;
-       // let greaterOrLess = "Less Than";
-       //
-       // if (greaterThan === true) {
-       //    greaterOrLess = "Greater Than";
-       // }
-
       const userTierAndNumberOfProperties = scripts.subscriptionAndProperties(tier, greaterOrLess, numOfProperties);
 
       this.setState({
@@ -180,14 +169,6 @@ class App extends Component {
         })
     };
 
-    // radioOnChange = (e) => {
-    //     console.log(e.target);
-    //
-    //     this.setState((prevState) => ({
-    //         checked1: !prevState.checked1,
-    //         checked2: !prevState.checked2
-    //     }));
-    // };
 
   render() {
     return (

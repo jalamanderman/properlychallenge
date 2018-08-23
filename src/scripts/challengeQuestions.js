@@ -2,16 +2,9 @@
 // Convert JSON files to array variables
 
 const usersArray = require("../store/users.json");
-//const usersArray = Object.keys(users).map(function(k) { return users[k] });
-
-const bookings = require("../store/bookings.json");
-const bookingsArray = Object.keys(bookings).map(function(k) { return bookings[k] });
-
-const subscriptions = require("../store/subscriptions.json");
-const subscriptionsArray = Object.keys(subscriptions).map(function(k) { return subscriptions[k] });
-
-const properties = require("../store/properties.json");
-const propertiesArray = Object.keys(properties).map(function(k) { return properties[k] });
+const bookingsArray = require("../store/bookings.json");
+const subscriptionsArray = require("../store/subscriptions.json");
+const propertiesArray = require("../store/properties.json");
 
 // Imports
 const moment = require('moment');
